@@ -7,7 +7,7 @@ const HighScoresPage = () => {
   return (
     <div className="min-h-screen bg-tetris-bg text-white">
       <Navbar />
-      <div className="pt-24">
+      <div className="pt-24 pb-12">
         <HighScores />
       </div>
       <Footer />
