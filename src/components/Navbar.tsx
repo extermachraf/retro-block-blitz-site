@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,56 +31,58 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
-          <span className="font-pixel text-tetris-i neon-text text-xl">TETRIS</span>
-          <div className="hidden md:flex ml-8 space-x-4">
-            {["Home", "About", "How to Play", "High Scores"].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-white hover:text-tetris-i transition-colors duration-200"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
-        
-        <div className="hidden md:block">
-          <Button className="bg-tetris-i hover:bg-tetris-i/80 text-tetris-bg font-bold">
-            Play Now
-          </Button>
+          <Link to="/" className="font-pixel text-tetris-i neon-text text-xl">TETRIS</Link>
         </div>
         
         <button
-          className="md:hidden text-white hover:text-tetris-i"
+          className="text-white hover:text-tetris-i z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          <Menu />
+          {isMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
       
-      {/* Mobile menu */}
+      {/* Side menu for all screen sizes */}
       <div 
-        className={`md:hidden bg-tetris-bg/95 backdrop-blur-md absolute w-full py-4 shadow-lg transition-all duration-300 ${
-          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+        className={`fixed top-0 right-0 h-full bg-tetris-bg/95 backdrop-blur-md w-64 shadow-lg transition-all duration-300 z-40 ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="container mx-auto px-4 flex flex-col space-y-4">
-          {["Home", "About", "How to Play", "High Scores"].map((item) => (
-            <a 
-              key={item} 
-              href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-              className="text-white hover:text-tetris-i py-2 transition-colors duration-200"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item}
-            </a>
-          ))}
-          <Button className="bg-tetris-i hover:bg-tetris-i/80 text-tetris-bg font-bold w-full mt-2">
-            Play Now
-          </Button>
+        <div className="flex flex-col h-full pt-20 px-6">
+          <div className="flex flex-col space-y-6">
+            {[
+              { name: "Home", path: "/" },
+              { name: "About", path: "/about" },
+              { name: "How to Play", path: "/how-to-play" },
+              { name: "High Scores", path: "/high-scores" }
+            ].map((item) => (
+              <Link 
+                key={item.name} 
+                to={item.path}
+                className="text-white hover:text-tetris-i py-2 text-lg transition-colors duration-200 border-b border-gray-800"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-auto mb-10">
+            <Link to="/play">
+              <Button className="w-full bg-tetris-i hover:bg-tetris-i/80 text-tetris-bg font-bold py-6">
+                Play Now
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
+      
+      {/* Overlay */}
+      {isMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-30"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
     </nav>
   );
 };

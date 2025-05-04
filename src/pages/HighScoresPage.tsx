@@ -1,16 +1,18 @@
 
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import HighScores from "@/components/HighScores";
 import Footer from "@/components/Footer";
 
-const Index = () => {
+const HighScoresPage = () => {
   return (
     <div className="min-h-screen bg-tetris-bg text-white">
       <Navbar />
-      <Hero />
+      <div className="pt-24">
+        <HighScores />
+      </div>
       <Footer />
     </div>
   );
 };
 
-export default Index;
+export default HighScoresPage;

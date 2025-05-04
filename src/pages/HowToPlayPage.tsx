@@ -1,16 +1,18 @@
 
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import HowToPlay from "@/components/HowToPlay";
 import Footer from "@/components/Footer";
 
-const Index = () => {
+const HowToPlayPage = () => {
   return (
     <div className="min-h-screen bg-tetris-bg text-white">
       <Navbar />
-      <Hero />
+      <div className="pt-24">
+        <HowToPlay />
+      </div>
       <Footer />
     </div>
   );
 };
 
-export default Index;
+export default HowToPlayPage;
