@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Tetris block colors
+				tetris: {
+					i: '#00f0f0', // Cyan I block
+					j: '#0000f0', // Blue J block
+					l: '#f0a000', // Orange L block
+					o: '#f0f000', // Yellow O block
+					s: '#00f000', // Green S block
+					t: '#a000f0', // Purple T block
+					z: '#f00000', // Red Z block
+					bg: '#121212', // Dark background
 				}
+			},
+			fontFamily: {
+				pixel: ['"Press Start 2P"', 'cursive'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +99,26 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'tetris-fall': {
+					'0%': { transform: 'translateY(-100%)' },
+					'100%': { transform: 'translateY(0)' }
+				},
+				'tetris-rotate': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'tetris-appear': {
+					'0%': { opacity: '0', transform: 'scale(0.8)' },
+					'100%': { opacity: '1', transform: 'scale(1)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'tetris-fall': 'tetris-fall 1s ease-in',
+				'tetris-rotate': 'tetris-rotate 4s linear infinite',
+				'tetris-appear': 'tetris-appear 0.5s ease-out'
 			}
 		}
 	},
