@@ -61,7 +61,6 @@ const Navbar = () => {
               >
                 <span className="w-2 h-2 rounded-full bg-tetris-i mr-3 opacity-0 group-hover:opacity-100 transition-all"></span>
                 {item.name}
-              </span>
               </Link>
             ))}
           </div>
